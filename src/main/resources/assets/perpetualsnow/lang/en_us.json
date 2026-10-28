@@ -1,0 +1,41 @@
+{
+	"perpetualsnow.title": "Perpetual Snow",
+
+	"perpetualsnow.category.general": "General",
+	"perpetualsnow.category.appearance": "Appearance",
+	"perpetualsnow.category.motion": "Motion",
+	"perpetualsnow.category.environment": "Environment",
+
+	"perpetualsnow.group.dimensions": "Dimensions",
+
+	"perpetualsnow.option.enabled": "Mod enabled",
+	"perpetualsnow.option.enabled.desc": "Turns perpetual snow on or off completely.",
+
+	"perpetualsnow.option.overworld": "Overworld",
+	"perpetualsnow.option.overworld.desc": "Snow in the Overworld.",
+	"perpetualsnow.option.nether": "Nether",
+	"perpetualsnow.option.nether.desc": "Snow in the Nether (off by default).",
+	"perpetualsnow.option.end": "The End",
+	"perpetualsnow.option.end.desc": "Snow in the End (off by default).",
+
+	"perpetualsnow.option.amount": "Amount / density",
+	"perpetualsnow.option.amount.desc": "How heavily it snows. Keep it low for a clear view while PvPing.",
+	"perpetualsnow.option.flakeSize": "Flake size",
+	"perpetualsnow.option.flakeSize.desc": "Size and thickness of the flakes. 1.0 = vanilla.",
+	"perpetualsnow.option.opacity": "Opacity",
+	"perpetualsnow.option.opacity.desc": "How solid the flakes look. 1.0 = fully visible.",
+
+	"perpetualsnow.option.fallSpeed": "Fall speed",
+	"perpetualsnow.option.fallSpeed.desc": "How fast the flakes fall. 1.0 = vanilla.",
+	"perpetualsnow.option.drift": "Sideways drift",
+	"perpetualsnow.option.drift.desc": "How much the flakes drift sideways. 0 = straight down.",
+
+	"perpetualsnow.option.noSkyDarken": "Don't darken the sky",
+	"perpetualsnow.option.noSkyDarken.desc": "Keeps sky and fog bright instead of dimming them for the fake weather.",
+	"perpetualsnow.option.muteRainSounds": "Mute rain sounds",
+	"perpetualsnow.option.muteRainSounds.desc": "Silences the weather and rain sounds.",
+	"perpetualsnow.option.throughCeilings": "Snow everywhere",
+	"perpetualsnow.option.throughCeilings.desc": "Always makes snow fall around you, no matter what is above (barriers, glass, stone, high or low arena roofs). Meant for PvP in enclosed arenas. Off = only under open sky.",
+	"perpetualsnow.option.fullBright": "Fully lit snow",
+	"perpetualsnow.option.fullBright.desc": "Always renders the snow at full brightness, even under ceilings. Needed so snow stays visible inside arenas."
+}

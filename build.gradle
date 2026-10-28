@@ -1,0 +1,96 @@
+plugins {
+	// Klassisches Loom (fuer Yarn-Mappings).
+	// Gepinnt auf 1.19.3 (verifiziert ueber den Build-Fehler: der Snapshot loeste
+	// zu 1.19.3 auf). Diese Loom-Linie verlangt Gradle >= 9.8.0 -> Wrapper steht
+	// deshalb auf 9.8 (siehe gradle/wrapper/gradle-wrapper.properties).
+	id 'fabric-loom' version '1.19.3'
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Loom legt die Fabric-/Mojang-Maven-Repos selbst an.
+	// MixinExtras (io.github.llamalad7) liegt auf Maven Central.
+	mavenCentral()
+	// YACL - offizieller Maven von isXander.
+	maven { url = 'https://maven.isxander.dev/releases' }
+	// Mod Menu - TerraformersMC Maven.
+	maven { url = 'https://maven.terraformersmc.com/releases/' }
+	// Modrinth-Maven als Fallback (loest YACL/ModMenu per Projekt/Version-ID,
+	// koordinaten-unabhaengig). Nur die beiden Gruppen zulassen.
+	exclusiveContent {
+		forRepository { maven { url = 'https://api.modrinth.com/maven' } }
+		filter { includeGroup 'maven.modrinth' }
+	}
+	// QuiltMC-Maven: YACL braucht org.quiltmc.parsers (json+gson). Ueber den
+	// Modrinth-Maven kommen diese transitiven Abhaengigkeiten NICHT mit, daher
+	// explizit von hier beziehen und mit-bundeln (siehe dependencies).
+	maven { url = 'https://maven.quiltmc.org/repository/release' }
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// MixinExtras: Fabric Loader liefert es nur im 'development'-Scope (Laufzeit),
+	// nicht zuverlaessig fuer den Compile und nicht gebuendelt im Release-Jar.
+	// Wir binden es daher explizit ein und bundeln es via include(), damit die
+	// @ModifyReturnValue / @ModifyExpressionValue kompilieren UND auf fremden
+	// Clients (anderer Nutzer ohne Dev-Env) vorhanden sind. Version = die vom
+	// Loader 0.20.1 genutzte (0.5.5), um Versionskonflikte zu vermeiden.
+	compileOnly "io.github.llamalad7:mixinextras-common:0.5.5"
+	annotationProcessor "io.github.llamalad7:mixinextras-common:0.5.5"
+	include(implementation("io.github.llamalad7:mixinextras-fabric:0.5.5"))
+
+	// YACL (Config-UI) + Mod Menu (Zahnrad in der Mod-Liste).
+	// Bezug ueber den Modrinth-Maven per Projekt-Slug:Versions-ID
+	//   yacl    Projekt-ID 1eAoo2KR, Version-ID pHWDw3Vc = 3.8.2+1.21.11-fabric
+	//   modmenu Projekt-ID mOgUt4GM, Version-ID cLkYaVuL = 17.0.1
+	// (verifiziert ueber die Modrinth-API am 2026-10-27)
+	modImplementation "maven.modrinth:yacl:pHWDw3Vc"
+	modImplementation "maven.modrinth:modmenu:cLkYaVuL"
+
+	// YACLs eigene Laufzeit-Abhaengigkeit: quilt-parsers (json+gson). Der
+	// Modrinth-Maven liefert sie nicht mit -> hier explizit, und via include()
+	// ins Jar gebuendelt, sonst NoClassDefFoundError GsonWriter beim Start.
+	// Version 0.2.1 = exakt die, die YACL 3.8.2 nutzt (aus YACLs gradle.properties).
+	include(modImplementation("org.quiltmc.parsers:json:0.2.1"))
+	include(modImplementation("org.quiltmc.parsers:gson:0.2.1"))
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	// Apache-2.0 verlangt, dass LICENSE und NOTICE mitgeliefert werden.
+	from("LICENSE") {
+		rename { "${it}_${project.archives_base_name}" }
+	}
+	from("NOTICE") {
+		rename { "${it}_${project.archives_base_name}" }
+	}
+}

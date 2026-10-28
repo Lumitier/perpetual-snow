@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "perpetualsnow",
+	"version": "${version}",
+	"name": "Perpetual Snow",
+	"description": "Client-side mod for permanent snowfall - independent of weather, biome and server. Works inside closed PvP arenas.",
+	"authors": [
+		"Lukas"
+	],
+	"contact": {},
+	"license": "Apache-2.0",
+	"icon": "assets/perpetualsnow/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.example.perpetualsnow.client.PerpetualSnowClient"
+		],
+		"modmenu": [
+			"com.example.perpetualsnow.config.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		{
+			"config": "perpetualsnow.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*",
+		"yet_another_config_lib_v3": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}

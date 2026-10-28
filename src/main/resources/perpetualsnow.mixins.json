@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "com.example.perpetualsnow.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"WeatherRenderingMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
