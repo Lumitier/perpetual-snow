@@ -1,66 +1,72 @@
 # Perpetual Snow
 
-Clientseitige [Fabric](https://fabricmc.net/)-Mod fuer Minecraft **1.21.11**.
-Laesst dauerhaft Schnee fallen — unabhaengig von Wetter, Biom und Server.
-Gebaut fuer PvP: funktioniert auch in geschlossenen Arenen.
+Client-side [Fabric](https://fabricmc.net/) mod for Minecraft **1.21.11**.
+Makes snow fall permanently — regardless of weather, biome or server.
+Built with PvP in mind: it also works inside closed arenas.
 
 ## Features
-- **Dauerschnee in allen Bioms**, auch in der Wueste und bei klarem Wetter
-- **Funktioniert in Arenen**: Schnee faellt auch unter Decken (PvP-Server)
-- Vanilla-Regen/Gewitter wandelt den Schnee nicht zurueck in Regen
-- **Respektiert Texturpack-Schnee** — es wird keine eigene Textur erzwungen
-- **Skyboxify-kompatibel** (v3.4, Custom Skies) — getestet, kein Flackern
-- Keine Regengeraeusche (faellt durch den Schnee-Modus automatisch weg)
-- Rein clientseitig: laeuft auf fremden Servern, kein Gameplay-Einfluss,
-  keine Netzwerk-Pakete
+- **Permanent snow in every biome**, deserts included, under a clear sky
+- **Works in arenas**: snow falls under ceilings too (PvP servers)
+- Vanilla rain and thunderstorms won't turn the snow back into rain
+- **Respects resource pack snow** — no custom texture is forced
+- **Skyboxify compatible** (v3.4, Custom Skies) — tested, no flicker
+- No rain sounds (the snow mode removes them automatically)
+- Purely client-side: works on any server, no gameplay changes, no network
+  packets
 
-## Konfiguration
-Im Spiel ueber **Mods → Perpetual Snow → Zahnrad** (benoetigt Mod Menu).
-Alle Regler wirken sofort, ohne Neustart.
+## Configuration
+In game via **Mods → Perpetual Snow → ⚙** (requires Mod Menu).
+Every setting applies instantly, no restart needed.
 
-| Kategorie   | Optionen |
-|-------------|----------|
-| Allgemein   | Mod an/aus, Overworld / Nether / End einzeln |
-| Aussehen    | Menge & Dichte, Flockengroesse, Deckkraft |
-| Bewegung    | Fallgeschwindigkeit, seitlicher Drift |
-| Umgebung    | Himmel nicht abdunkeln, Regengeraeusche stumm, **Schnee ueberall (durch Decken)**, Schnee voll beleuchten |
+| Category    | Options |
+|-------------|---------|
+| General     | Mod on/off, Overworld / Nether / The End individually |
+| Appearance  | Amount & density, flake size, opacity |
+| Motion      | Fall speed, sideways drift |
+| Environment | Don't darken the sky, mute rain sounds, **snow everywhere (through ceilings)**, fully lit snow |
 
-Der Screen folgt der Spielsprache — **Englisch und Deutsch** sind enthalten.
+Available in **English** and **German** — the screen follows your game
+language.
 
-Die Einstellungen landen in `config/perpetualsnow.json`. Ungueltige Werte
-fallen automatisch auf die Standardwerte zurueck.
+Settings live in `config/perpetualsnow.json`. Invalid values fall back to
+the defaults automatically.
 
-> **Tipp fuer PvP:** Die Menge standardmaessig niedrig lassen (ca. 0.35) —
-> dann bleibt die Sicht frei.
+> **PvP tip:** keep the amount low (around 0.35) so your view stays clear.
 
-## Voraussetzungen
-- Minecraft **1.21.11** mit **Fabric Loader 0.20.1 oder neuer**
+## Why "snow everywhere"?
+Vanilla only renders weather down to the highest solid block in each column.
+Inside a roofed arena that block **is** the roof, so the game decides there
+is nothing to draw and you get no snow at all. The "snow everywhere" option
+makes the renderer ignore ceilings.
+
+## Requirements
+- Minecraft **1.21.11** with **Fabric Loader 0.20.1** or newer
 - [Fabric API](https://modrinth.com/mod/fabric-api)
-- [YACL](https://modrinth.com/mod/yacl) (fuer den Config-Screen)
-- [Mod Menu](https://modrinth.com/mod/modmenu) (optional, fuer das Zahnrad)
+- [YACL](https://modrinth.com/mod/yacl) (for the config screen)
+- [Mod Menu](https://modrinth.com/mod/modmenu) (optional, for the settings
+  button)
 
 ## Installation
-`perpetualsnow-1.0.0.jar` in den `mods`-Ordner kopieren, zusammen mit den
-Abhaengigkeiten oben.
+Drop `perpetualsnow-1.0.0.jar` into your `mods` folder, together with the
+dependencies above.
 
-## Selbst bauen
-Benoetigt **JDK 25** (nur zum Bauen — die Mod selbst laeuft auf Java 21).
+## Building it yourself
+Requires **JDK 25** (to build only — the mod itself runs on Java 21).
 
 ```bash
 ./gradlew build        # -> build/libs/perpetualsnow-1.0.0.jar
-./gradlew runClient    # Dev-Client zum Testen
+./gradlew runClient    # dev client for testing
 ```
-Windows: `gradlew.bat build`.
+On Windows: `gradlew.bat build`.
 
-Die Datei **ohne** `-sources` im Namen ist die spielbare Mod.
+The file **without** `-sources` in its name is the playable mod.
 
-## Lizenz
-Lizenziert unter der [Apache License 2.0](LICENSE).
+## License
+Licensed under the [Apache License 2.0](LICENSE).
 
-Du darfst die Mod frei nutzen, veraendern und weitergeben, solange die
-Urheberrechts- und Lizenzhinweise erhalten bleiben und Aenderungen
-gekennzeichnet werden. Siehe [NOTICE](NOTICE) fuer die Lizenzen der
-mitgelieferten Bibliotheken.
+You may use, modify and redistribute this mod freely, as long as the
+copyright and license notices are kept and changes are marked. See
+[NOTICE](NOTICE) for the licenses of the bundled libraries.
 
-Minecraft ist eine Marke von Mojang Synergies AB. Dieses Projekt steht in
-keiner Verbindung zu Mojang oder Microsoft.
+Minecraft is a trademark of Mojang Synergies AB. This project is not
+affiliated with Mojang or Microsoft.
