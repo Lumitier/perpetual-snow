@@ -5,12 +5,10 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.client.render.WeatherRendering;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
  * Kern von Ansatz A: minimale, gezielte Eingriffe in Vanillas Wetter-Renderer.
@@ -60,14 +58,18 @@ public abstract class WeatherRenderingMixin {
 	//
 	// Trade-off: schneit auch unter echten Daechern. Fuer PvP/Arenen gewollt;
 	// per Option (snowThroughBarriers) abschaltbar.
-	@Redirect(
+	// KOMPATIBILITAET: Frueher stand hier ein @Redirect. Der ist exklusiv - pro
+	// Aufrufstelle gewinnt genau eine Mod, alle weiteren bekommen einen
+	// kritischen Injection-Fehler und das Spiel startet nicht mehr. Da getTopY
+	// einen Wert zurueckgibt, tut @ModifyExpressionValue dasselbe und ist
+	// stapelbar: mehrere Mods veraendern den Wert nacheinander.
+	@ModifyExpressionValue(
 		method = "buildPrecipitationPieces",
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getTopY(Lnet/minecraft/world/Heightmap$Type;II)I")
 	)
-	private int perpetualsnow$redirectTopY(World world, Heightmap.Type type, int m, int l) {
-		int realTop = world.getTopY(type, m, l);
+	private int perpetualsnow$lowerTopY(int original, World world) {
 		if (!PerpetualSnow.enabled || !PerpetualSnow.snowThroughBarriers || !active(world)) {
-			return realTop;
+			return original;
 		}
 		// Weit unter dem Spieler -> Schnee-Fenster wird camY +/- Radius, Decke egal.
 		return world.getBottomY();

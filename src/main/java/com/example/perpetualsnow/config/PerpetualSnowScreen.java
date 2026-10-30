@@ -68,11 +68,17 @@ public final class PerpetualSnowScreen {
 		return YetAnotherConfigLib.createBuilder()
 			.title(Text.translatable("perpetualsnow.title"))
 
-			// ---- Allgemein ----
+			// ================= Tab 1: General =================
 			.category(ConfigCategory.createBuilder()
 				.name(Text.translatable("perpetualsnow.category.general"))
 				.option(toggle("enabled", true,
 					() -> PerpetualSnow.enabled, v -> PerpetualSnow.enabled = v))
+				.build())
+
+			// ================= Tab 2: Perpetual Snow =================
+			.category(ConfigCategory.createBuilder()
+				.name(Text.translatable("perpetualsnow.category.snow"))
+
 				.group(OptionGroup.createBuilder()
 					.name(Text.translatable("perpetualsnow.group.dimensions"))
 					.option(toggle("overworld", true,
@@ -82,39 +88,37 @@ public final class PerpetualSnowScreen {
 					.option(toggle("end", false,
 						() -> PerpetualSnow.end, v -> PerpetualSnow.end = v))
 					.build())
-				.build())
 
-			// ---- Aussehen ----
-			.category(ConfigCategory.createBuilder()
-				.name(Text.translatable("perpetualsnow.category.appearance"))
-				.option(slider("amount", 0.35F, 0.0F, 1.0F, 0.05F,
-					() -> PerpetualSnow.amount, v -> PerpetualSnow.amount = v))
-				.option(slider("flakeSize", 1.0F, 0.2F, 3.0F, 0.1F,
-					() -> PerpetualSnow.flakeSize, v -> PerpetualSnow.flakeSize = v))
-				.option(slider("opacity", 1.0F, 0.1F, 1.0F, 0.05F,
-					() -> PerpetualSnow.opacity, v -> PerpetualSnow.opacity = v))
-				.build())
+				.group(OptionGroup.createBuilder()
+					.name(Text.translatable("perpetualsnow.group.appearance"))
+					.option(slider("amount", 0.35F, 0.0F, 1.0F, 0.05F,
+						() -> PerpetualSnow.amount, v -> PerpetualSnow.amount = v))
+					.option(slider("flakeSize", 1.0F, 0.2F, 3.0F, 0.1F,
+						() -> PerpetualSnow.flakeSize, v -> PerpetualSnow.flakeSize = v))
+					.option(slider("opacity", 1.0F, 0.1F, 1.0F, 0.05F,
+						() -> PerpetualSnow.opacity, v -> PerpetualSnow.opacity = v))
+					.build())
 
-			// ---- Bewegung ----
-			.category(ConfigCategory.createBuilder()
-				.name(Text.translatable("perpetualsnow.category.motion"))
-				.option(slider("fallSpeed", 1.0F, 0.2F, 3.0F, 0.1F,
-					() -> PerpetualSnow.fallSpeed, v -> PerpetualSnow.fallSpeed = v))
-				.option(slider("drift", 1.0F, 0.0F, 3.0F, 0.1F,
-					() -> PerpetualSnow.drift, v -> PerpetualSnow.drift = v))
-				.build())
+				.group(OptionGroup.createBuilder()
+					.name(Text.translatable("perpetualsnow.group.motion"))
+					.option(slider("fallSpeed", 1.0F, 0.2F, 3.0F, 0.1F,
+						() -> PerpetualSnow.fallSpeed, v -> PerpetualSnow.fallSpeed = v))
+					.option(slider("drift", 1.0F, 0.0F, 3.0F, 0.1F,
+						() -> PerpetualSnow.drift, v -> PerpetualSnow.drift = v))
+					.build())
 
-			// ---- Umgebung ----
-			.category(ConfigCategory.createBuilder()
-				.name(Text.translatable("perpetualsnow.category.environment"))
-				.option(toggle("noSkyDarken", true,
-					() -> PerpetualSnow.noSkyDarken, v -> PerpetualSnow.noSkyDarken = v))
-				.option(toggle("muteRainSounds", true,
-					() -> PerpetualSnow.muteRainSounds, v -> PerpetualSnow.muteRainSounds = v))
-				.option(toggle("throughCeilings", true,
-					() -> PerpetualSnow.snowThroughBarriers, v -> PerpetualSnow.snowThroughBarriers = v))
-				.option(toggle("fullBright", true,
-					() -> PerpetualSnow.fullBright, v -> PerpetualSnow.fullBright = v))
+				.group(OptionGroup.createBuilder()
+					.name(Text.translatable("perpetualsnow.group.environment"))
+					.option(toggle("noSkyDarken", true,
+						() -> PerpetualSnow.noSkyDarken, v -> PerpetualSnow.noSkyDarken = v))
+					.option(toggle("muteRainSounds", true,
+						() -> PerpetualSnow.muteRainSounds, v -> PerpetualSnow.muteRainSounds = v))
+					.option(toggle("throughCeilings", true,
+						() -> PerpetualSnow.snowThroughBarriers, v -> PerpetualSnow.snowThroughBarriers = v))
+					.option(toggle("fullBright", true,
+						() -> PerpetualSnow.fullBright, v -> PerpetualSnow.fullBright = v))
+					.build())
+
 				.build())
 
 			.save(PerpetualSnow::save)
