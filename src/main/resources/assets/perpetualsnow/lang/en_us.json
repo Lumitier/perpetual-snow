@@ -31,5 +31,6 @@
   "perpetualsnow.category.snow": "Perpetual Snow",
   "perpetualsnow.group.appearance": "Appearance",
   "perpetualsnow.group.motion": "Motion",
-  "perpetualsnow.group.environment": "Environment"
+  "perpetualsnow.group.environment": "Environment",
+  "perpetualsnow.group.general": "General"
 }

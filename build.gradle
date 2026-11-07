@@ -15,6 +15,9 @@ base {
 }
 
 repositories {
+	// LumiLib - liegt lokal, dorthin veroeffentlicht
+	// mit 'gradlew publishToMavenLocal' im LumiLib-Projekt.
+	mavenLocal()
 	// Loom legt die Fabric-/Mojang-Maven-Repos selbst an.
 	// MixinExtras (io.github.llamalad7) liegt auf Maven Central.
 	mavenCentral()
@@ -57,6 +60,11 @@ dependencies {
 	// (verifiziert ueber die Modrinth-API am 2026-10-27)
 	modImplementation "maven.modrinth:yacl:pHWDw3Vc"
 	modImplementation "maven.modrinth:modmenu:cLkYaVuL"
+
+	// LumiLib: NICHT mitbuendeln. Der Nutzer installiert sie
+	// einmal, nicht fuenfmal in fuenf Jars.
+	modCompileOnly "com.lumitier.lumilib:lumilib:1.0.1"
+	modLocalRuntime "com.lumitier.lumilib:lumilib:1.0.1"
 
 	// YACLs eigene Laufzeit-Abhaengigkeit: quilt-parsers (json+gson). Der
 	// Modrinth-Maven liefert sie nicht mit -> hier explizit, und via include()
