@@ -68,7 +68,7 @@ public abstract class WeatherRenderingMixin {
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getTopY(Lnet/minecraft/world/Heightmap$Type;II)I")
 	)
 	private int perpetualsnow$lowerTopY(int original, World world) {
-		if (!PerpetualSnow.enabled || !PerpetualSnow.snowThroughBarriers || !active(world)) {
+		if (!PerpetualSnow.active() || !PerpetualSnow.snowThroughBarriers || !active(world)) {
 			return original;
 		}
 		// Weit unter dem Spieler -> Schnee-Fenster wird camY +/- Radius, Decke egal.
@@ -92,7 +92,7 @@ public abstract class WeatherRenderingMixin {
 	// ist die Dimension aus, gibt es keine snowPieces, also kein Aufruf hierher).
 	@ModifyReturnValue(method = "createSnowPiece", at = @At("RETURN"))
 	private WeatherRendering.Piece perpetualsnow$shapeSnow(WeatherRendering.Piece p) {
-		if (!PerpetualSnow.enabled) {
+		if (!PerpetualSnow.active()) {
 			return p;
 		}
 		float drift = PerpetualSnow.clamp(PerpetualSnow.drift, 0.0F, 3.0F);
@@ -125,7 +125,7 @@ public abstract class WeatherRenderingMixin {
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/ColorHelper;getWhite(F)I")
 	)
 	private int perpetualsnow$opacity(int originalColor) {
-		if (!PerpetualSnow.enabled) {
+		if (!PerpetualSnow.active()) {
 			return originalColor;
 		}
 		float op = PerpetualSnow.clamp(PerpetualSnow.opacity, 0.1F, 1.0F);
@@ -174,7 +174,7 @@ public abstract class WeatherRenderingMixin {
 
 	// Groessere Flocke = kleinerer Divisor (Breite = DX / divisor).
 	private static float perpetualsnow$scaleDivisor(float originalDivisor) {
-		if (!PerpetualSnow.enabled) {
+		if (!PerpetualSnow.active()) {
 			return originalDivisor;
 		}
 		float size = PerpetualSnow.clamp(PerpetualSnow.flakeSize, 0.2F, 3.0F);
@@ -186,7 +186,7 @@ public abstract class WeatherRenderingMixin {
 
 	// -----------------------------------------------------------------
 	private static boolean active(World world) {
-		if (!PerpetualSnow.enabled || world == null) {
+		if (!PerpetualSnow.active() || world == null) {
 			return false;
 		}
 		var key = world.getRegistryKey();

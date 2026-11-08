@@ -56,6 +56,16 @@ public final class LumiLibCompat {
 			// oeffnet weiterhin diesen Bildschirm.
 			PerpetualSnowScreen::create,
 			LumiLibCompat::settings));
+
+		// Server-Regeln (LumiLibControlPlugin). Eigener Fang: Mit einer
+		// LumiLib aelter als 1.3.0 gibt es die Methode nicht - dann soll die
+		// Mod trotzdem im Hub stehen, nur eben ohne Server-Steuerung.
+		try {
+			LumiLibApi.onServerRulesChanged(() ->
+				PerpetualSnow.serverDisabled = LumiLibApi.isDisabledByServer(PerpetualSnow.MOD_ID));
+		} catch (Throwable t) {
+			PerpetualSnow.LOGGER.warn("[Perpetual Snow] LumiLib is too old for server control (needs 1.3.0+).");
+		}
 	}
 
 	/**
