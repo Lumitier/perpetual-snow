@@ -36,3 +36,19 @@ used through their public APIs only; no part of them is copied or modified.
 
 Minecraft is a trademark of Mojang Synergies AB. This project is not
 affiliated with or endorsed by Mojang or Microsoft.
+
+--------------------------------------------------------------------------
+Icon
+--------------------------------------------------------------------------
+
+  Lucide
+      Copyright (c) 2026 Lucide Icons and Contributors
+      https://lucide.dev
+      Licensed under the ISC License.
+
+  The mod icon (icon.png) is the Lucide icon "snowflake", placed on a
+  rounded background. The outline itself is unchanged. The full licence
+  text is in LICENSE-Lucide.txt.
+
+  Parts of Lucide derive from the Feather project,
+  Copyright (c) 2013-2023 Cole Bemis, MIT licensed.
