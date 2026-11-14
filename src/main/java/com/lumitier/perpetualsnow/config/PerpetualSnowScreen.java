@@ -1,6 +1,6 @@
-package com.example.perpetualsnow.config;
+package com.lumitier.perpetualsnow.config;
 
-import com.example.perpetualsnow.PerpetualSnow;
+import com.lumitier.perpetualsnow.PerpetualSnow;
 import dev.isxander.yacl3.api.ConfigCategory;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;

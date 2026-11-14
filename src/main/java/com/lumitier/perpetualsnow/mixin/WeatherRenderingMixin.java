@@ -1,6 +1,6 @@
-package com.example.perpetualsnow.mixin;
+package com.lumitier.perpetualsnow.mixin;
 
-import com.example.perpetualsnow.PerpetualSnow;
+import com.lumitier.perpetualsnow.PerpetualSnow;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.client.render.WeatherRendering;

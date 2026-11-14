@@ -1,10 +1,10 @@
-package com.example.perpetualsnow.client;
+package com.lumitier.perpetualsnow.client;
 
 import com.lumitier.lumilib.api.LumiLibApi;
 import com.lumitier.lumilib.api.LumiMod;
 import com.lumitier.lumilib.api.SettingsPage;
-import com.example.perpetualsnow.PerpetualSnow;
-import com.example.perpetualsnow.config.PerpetualSnowScreen;
+import com.lumitier.perpetualsnow.PerpetualSnow;
+import com.lumitier.perpetualsnow.config.PerpetualSnowScreen;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.text.Text;

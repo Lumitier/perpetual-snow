@@ -5,18 +5,22 @@
   "name": "Perpetual Snow",
   "description": "Client-side mod for permanent snowfall - independent of weather, biome and server. Works inside closed PvP arenas.",
   "authors": [
-    "Lukas"
+    "Lumitier"
   ],
-  "contact": {},
+  "contact": {
+    "homepage": "https://modrinth.com/mod/perpetual-snow",
+    "sources": "https://github.com/Lumitier/perpetual-snow",
+    "issues": "https://github.com/Lumitier/perpetual-snow/issues"
+  },
   "license": "Apache-2.0",
   "icon": "assets/perpetualsnow/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "com.example.perpetualsnow.client.PerpetualSnowClient"
+      "com.lumitier.perpetualsnow.client.PerpetualSnowClient"
     ],
     "modmenu": [
-      "com.example.perpetualsnow.config.ModMenuIntegration"
+      "com.lumitier.perpetualsnow.config.ModMenuIntegration"
     ]
   },
   "mixins": [

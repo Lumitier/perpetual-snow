@@ -50,7 +50,7 @@ Fertiger Mod-Jar landet in `build/libs/perpetualsnow-<version>.jar` (NICHT der
 `-sources.jar`).
 
 ## Architektur / Konventionen
-- Package-Root: `com.example.perpetualsnow`
+- Package-Root: `com.lumitier.perpetualsnow`
   - `client/`  — Entrypoint + Client-Logik
   - `mixin/`   — Mixins (Config: `perpetualsnow.mixins.json`, alle `client`)
   - `config/`  — Config-Modell + Screen (ab Phase 4)

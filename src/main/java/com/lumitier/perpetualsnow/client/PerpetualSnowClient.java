@@ -1,4 +1,4 @@
-package com.example.perpetualsnow.client;
+package com.lumitier.perpetualsnow.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -18,7 +18,7 @@ public class PerpetualSnowClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		com.example.perpetualsnow.PerpetualSnow.load();
+		com.lumitier.perpetualsnow.PerpetualSnow.load();
 		LOGGER.info("[Perpetual Snow] geladen - Dauerschnee aktiv, Config bereit.");
 
 		// LumiLib ist optional - deshalb erst fragen, dann anfassen.

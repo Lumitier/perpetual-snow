@@ -1,4 +1,4 @@
-package com.example.perpetualsnow.config;
+package com.lumitier.perpetualsnow.config;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
